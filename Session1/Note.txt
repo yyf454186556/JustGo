@@ -1,0 +1,8 @@
+1. GOPATH 1.8版本默认在%USERPROFILE%/go
+2. 命令build命令 go build xxx.go, 运行命令go run xxx.go
+3. Go默认情况下会使用静态链接, 编译好的文件可以直接运行
+4.1 应用程序入口必须是main包， package main
+4.2 必须是main方法：func main()
+4.3 文件名不一定是main.go
+5. Go中main函数不支持任何返回值，通过os.Exit来返回状态
+6 main函数不支持传入参数,在程序中直接通过os.Args获取命令行参数
