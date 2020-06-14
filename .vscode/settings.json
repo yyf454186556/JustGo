@@ -1,0 +1,6 @@
+{
+    "go.coverOnSingleTest": true,
+    "go.coverOnSave": true,
+    "go.coverOnSingleTestFile": true,
+    "go.testFlags": ["-v"]
+}
