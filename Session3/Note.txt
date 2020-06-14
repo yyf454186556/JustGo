@@ -1,0 +1,25 @@
+基本数据类型
+bool
+string
+int int8 int16 int32 int64
+uint unit8 unit16 unit32 unit64 uintptr
+byte // alias for unit8
+rune // alias for int32, represents a Unicode code point ！！！这个类型以后会详详细介绍，暂且放一放
+float32 float64
+complex64 complex128
+
+默认类型根据运行的机器的位数决定使用多少位。
+
+Go语言不允许任何隐式类型转换
+别名和原有类型也不能进行隐式类型转换
+
+类型的预定义值
+例如：
+    math.MaxInt64
+    math.MaxFloat64
+    math.MaxUnit32
+
+指针类型 于其他主要变成语言的差异
+1. 不支持指针运算
+2. string是值类型，其默认的初始化值为空字符串，而不是nil
+

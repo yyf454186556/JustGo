@@ -1,0 +1,26 @@
+测试程序
+1. 源码文件必须以_test结尾： xxx_test.go
+2. 测试方法名以Test开头: func TestXXX(t *testing.T) {...}
+3. 运行命令 go test -v .\first_test.go
+4. Go支持多种复制关系以及一定的类型推断，但在2.0版本后将会不推荐甚至禁用一部分写法，目的是code的风格统一
+5. 同一个文件夹下不同go文件的package要相同，否则会报错 can't load package: package...
+6. 在一个赋值语句中可以对多个变量进行同时赋值 例如： a,b=b,a
+
+常量定义方面
+快速设置连续值
+1.
+
+const (
+    Monday = iota + 1
+    Tuseday
+    Wednesday
+    ...
+    Sunday
+)
+
+2. 表状态的bite位也可以这么玩
+Const (
+    Open = 1 << iota
+    Close
+    Pending
+)

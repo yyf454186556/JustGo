@@ -1,0 +1,72 @@
+循环
+    Go语言仅支持循环关键字for
+    例 for j:= 7; j <= 9; j++ （不需要括号括起来）
+
+    while条件循环 while (n < 5)
+    Go版本
+        n := 0
+        for n < 5 {
+            n++
+            fmt.Println(n)
+        }
+
+    无限循环 while(true)
+    Go版本
+        n := 0
+        for {
+            ...
+        }
+
+if条件
+    例：
+        if condition {
+            ...
+        } else {
+            ...
+        }
+
+        if condition - 1 {
+            ...
+        } else if condition - 2 {
+            ...
+        } else {
+            ...
+        }
+
+    区别：
+        1. condition表达式结果必须为布尔值（没有隐式转换，int是不可以的）
+        2. 支持变量赋值：
+            if vardeclaration; condition {
+                // code to be executed if condition is true
+            }
+
+switch条件
+    与其他语言的差异
+        1. 条件表达式不限制为常量或者整数
+        2. 单个case中，可以出现多个结果选项，使用逗号分隔
+        3. 与C语言等规则相反，Go语言中不需要使用break来明确退出一个case
+        4. 可以不设定switch之后的条件表达式，在此种情况下，整个switch结构与多个if...else...的逻辑作用等同
+
+    写法举例：
+    1.
+        switch os := runtime.GOOS; os {
+            case "darwin":
+                fmt.Println("OS X.")
+                //break
+            case "linux":
+                fmt.Println("Linux.")
+            default:
+                // freebsd, openbsd,
+                // plan9, windows...
+                fmt.Printf("%s.", os)
+        }
+
+    2.
+        switch {
+            case 0 <= Num && Num <= 3:
+                fmt.Prinft("0-3")
+            case 4 <= Num && Num <= 6:
+                fmt.Prinft("4-6")
+            case 7 <= Num && Num <= 9:
+                fmt.Prinft("7-9")
+        }
