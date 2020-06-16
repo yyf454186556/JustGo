@@ -44,7 +44,7 @@ func TestSliceGrowing(t *testing.T){
 		TestSliceGrowing: slice_test.go:30: 10 16
 	*/
 
-	//每次不够放的适合，都会将上次的扩展为之前的两倍，因此要使用类似于s2 = append(s2, 1) 因为是新的空间给s2，并将原来的数据拷贝过去。
+	//每次不够放的时候，都会将上次的扩展为之前的两倍，因此要使用类似于s2 = append(s2, 1) 因为是新的空间给s2，并将原来的数据拷贝过去。
 }
 
 func TestSliceShareMemory(t *testing.T) {
