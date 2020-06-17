@@ -1,0 +1,25 @@
+Map 声明
+    m := map[string]int{"one":1, "two":2, "three":3}
+    m1 := map[string]int{}
+    m1["one"] = 1
+
+    m2 := make(map[string]int, 10/*Initial Capacity*/)
+    //为什么不初始化len？ 对于切片 s := make([]int, 3, 5) 会指定len并给默认的0值，但语义上Map其实没办法指定默认值的，因此没有len.
+
+Map元素的访问
+    与其他主要变成语言的差异
+    当访问的Key不存在时，仍会返回零值，不能通过返回nil来判断元素是否存在，可以用如下方式判断
+
+    if v,ok:=m1[3];ok{
+		t.Logf("Key 3's value is %d", v)
+	} else {
+		t.Log("Key 3 is not existing.")
+	}
+
+    其中ok为bool值，当值存在时，ok的值为true
+
+Map遍历
+    m := map[string]int{"one":1, "two":2, "three":3}
+    for k,v := range m {
+        t.Log(k,v)
+    }
