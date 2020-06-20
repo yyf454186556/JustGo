@@ -5,3 +5,23 @@
     3. 函数可以作为变量的值         (笔者注：看描述感觉类似于C#中的Delegate)
     4. 函数可以作为参数或返回值     (笔者注：感觉类似于C#中的Function与Action)
 
+函数 可变参数及延迟运行
+
+    可变参数
+    func sum(ops ... int) int {
+        s := 0
+        for _, op := range ops {
+            s += op
+        }
+        return s
+    }
+
+    延迟执行函数 defer 类似于Finnaly
+    func TestDefer(t *testing.T){
+        defer func() { //这个内联函数直到TestDefer执行完毕，返回前才会执行。 通常用于清理资源，释放锁等功能
+            t.Log("Clear resources")
+        }()
+        t.Log("Started")
+        panic("Fatal error") //defer 仍会执行 //panic是Go中程序异常中断，抛出致命错误
+    }
+
