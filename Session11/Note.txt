@@ -1,0 +1,29 @@
+关于Go是不是面向对象语言其实有很多争论，关于给出的解释是：Yes and no.
+
+封装数据和行为
+    结构体定义
+    type Employee struct {
+        Id string
+        Name string
+        Age int
+    }
+
+    实例创建及初始化
+    e := Employee{"0", "Bob", 20}
+    e1 := Employee{Name: "Mike", Age: 30}
+    e2 := new(Employee) //注意这里返回的引用/指针, 相当于 e:= &Employee{}
+    e2.Id = "2" //与其他主要编程语言的差异：通过实例的指针访问成员不需要使用->
+    e2.Age = 22
+    e2.Name = "Rose"
+
+    行为(方法)的定义
+
+        //第一种定义方式在市里对应方法被调用时，实例的成员会进行值复制
+        func (e Employee) String() string {
+            return fmt.Sprintf("ID:%s-Name:%s-Age:%d", e.Id, e.Name, e.Age)
+        }
+
+        //第二种通常情况下为了避免内存拷贝我们使用第二种定义方式
+        func (e *Employee) String() string {
+            return fmt.Sprintf("ID:%s/Name:%s/Age:%d", e.Id, e.Name, e.Age)
+        }
