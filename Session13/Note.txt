@@ -1,0 +1,30 @@
+空接口与断言
+    1.空接口可以表示任何类型
+    2.通过断言来将空接口转换为定制类型
+        v, ok := p.(int) //ok=true时转换成功
+
+
+Go接口最佳实践
+    1.倾向于使用更小的接口，很多接口只包含一个方法，目的是让实现者负担更小
+        例如
+            type Reader interface {
+                Read(p []byte) (n int, err error)
+            }
+
+            type Writer interface {
+                Write(p []byte) (n int, err error)
+            }
+
+    2. 较大的接口定义，可以由多个小接口定义组合而成
+        例如：
+        type ReadWrite interface {
+            Reader
+            Writer
+        }
+    
+    3. 只依赖于必要功能的最小接口
+        例如：
+        
+        func StoreData(reader Reader) error {
+            ...
+        }
