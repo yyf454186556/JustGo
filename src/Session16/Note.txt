@@ -1,0 +1,17 @@
+Thread vs. Groutine (线程 vs. 协程)
+1. 创建时默认的stack的大小，以JDK5举例
+    JDK5以后Java Thread stack默认为1M
+    Groutine的Stack初始化大小为2K
+2. 和KSE(Kernel Space Entity)的对应关系
+    Java Thread是1:1r
+    Groutine是M:N
+
+M -- System Thread 系统线程
+P -- Proccessor Go语言的协程处理器
+G -- Goroutine 协程
+
+Goroutine的调度是这样的
+    启动的时候，会专门创建一个线程sysmon，用来监控和管理，在内部是一个循环：
+    1. 记录所有P的G任务计数schedtick, (schedtick会在每执行一个G任务后递增)
+    2. 如果检查到schedtick一直没有递增，说明这个P一直在执行同一个G任务,如果超过一定时间,就在这个G任务的栈信息里面加一个标记
+    3  然后这个G任务在执行的时候,如果遇到非内联函数调用,就会检查一次这个标记,然后中断自己,把自己加到队列末尾,执行下一个G
