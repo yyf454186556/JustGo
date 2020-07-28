@@ -1,0 +1,8 @@
+CSP  Communicating sequential processes
+    依赖于通道来完成两个通信实体之间的协调
+
+CSP Vs. Actor
+和Actor不同,CSP模式是通过Channel进行通讯的，更松耦合一些
+Go中的Channel是有容量限制并且独立于处理Groutine,而如Erlang,Actor模式中的mailbox容量是无线的,接收进程也总是被动地处理消息。
+
+感觉上有一点点类似于C#中的Task

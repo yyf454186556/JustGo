@@ -1,0 +1,24 @@
+多路选择和超时控制
+
+//注意这里是select 不是switch
+
+当运行到select这里时，只要任意一个case后等待的事件有值(处于非阻塞状态)，就会执行对应的case
+这里需要强调一下, 不能利用case的先后顺序来决定当同时有多个chan处于非阻塞状态时的执行顺序，或者说执行哪个case
+
+如果运行到select这里时所有的都没执行完，如果由default会执行default的内容，没有的时候会阻塞select直到有结果
+select {
+    case ret := <-retCh1:
+        t.Logf("result %s", ret)
+    case ret := <-retCh2:
+        t.Logf("result %s", ret)
+    default:
+        t.Error("No one returned")
+}
+
+//利用上面的原理实现超时的处理，同时等待两个chan，如果超过了超时检查的等待时间还没有返回结果，就返回"Time out"
+select {
+    case ret := <-retCh:
+        t.Logf("result %s", ret)
+    case <-time.After(time.Second * 1):
+        t.Error("time out")
+}
