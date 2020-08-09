@@ -1,0 +1,15 @@
+单例模式 (懒汉式，线程安全)
+
+Go语言中的sync package中专门有一个方法once.Do()
+这个方法能保证它传入的方法在多线程的环境下只会运行一次，可以充分利用这个方法来实现单例模式
+
+var once sync.Once
+var obj *SingletonObj
+
+func GetSingletonObj() *SingletonObj {
+    once.Do(func(){
+        fmt.Println("Create Singleton obj.")
+        obj = &SingletonObj{}
+    })
+    return obj
+}
